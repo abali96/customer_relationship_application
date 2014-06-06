@@ -5,6 +5,7 @@ class CRM #since all these have similar properties -- to start the program
 		#you can also write self.name = name
 		#instead of directly changing variable, you're using writer instead
 		#no benefit here, but will be handy in rails
+		@rolodex = Rolodex.new #you can now access this anywhere in your CRM class since it's an instance variable
 	end
 
 	def print_main_menu
@@ -26,7 +27,7 @@ class CRM #since all these have similar properties -- to start the program
 
 	def call_option(selection)
 		case selection
-		when 1 then add_new_contact
+		when 1 then add_new_contact #instance method from CRM class
 		when 2 then modify_existing_contact
 		when 3 then delete_existing_contact
 		when 4 then display_contacts
@@ -39,7 +40,49 @@ class CRM #since all these have similar properties -- to start the program
 			main_menu
 		end 
 	end
+
+	def add_new_contact
+	print "Enter First Name: "
+  first_name = gets.chomp
+  print "Enter Last Name: "
+  last_name = gets.chomp
+  print "Enter Email Address: "
+  email = gets.chomp
+  print "Enter a Note: "
+  note = gets.chomp
+  @rolodex.add_contact(Contact.new(first_name, last_name, email, note)) #contact is a local variable so it doesn't matter what it's called, but we want to be able to put this into a container to hold onto it for later on
+  main_menu #because we're in the instance of the class, we don't need to do a .something
+	end
 end 
 
-crm = CRM.new("Bitmaker Labs CRM") #create an instance of CRM
+class Contact
+	def initialize(first_name, last_name, email, note)
+		@firstname = first_name
+		@last_name = last_name
+		@email = email
+		@note = note
+	end
+end
+
+class Rolodex #make this an empty array to start
+	attr_accessor :id, :first_name, :last_name, :email, :note
+
+	def initialize
+		@contact_id = 1000 #so that you can associate each contact with a unique number like in databases 
+		@contacts = []
+		#your CRM should care about setting up a new rolodex right away
+	end
+
+
+	def add_contact(contact)
+		@contacts << contact
+		contact.id = @contact_id
+		@contact_id += 1 #increment it so that the next contact has a different, unique idea
+	end
+
+	def id #contact only gets ID after it's added to rolodex
+	end 
+end
+
+crm = CRM.new("Bitmaker Labs CRM")
 crm.main_menu
