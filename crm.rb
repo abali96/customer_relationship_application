@@ -3,6 +3,13 @@ require_relative "rolodex"
 
 class CRM #since all these have similar properties -- to start the program
 	attr_accessor :name
+
+	#define class method "run"
+	def self.run(name)
+		crm = self.new(name) #creates a new instance of CRM
+		crm.main_menu
+	end
+
 	def initialize(name)
 		@name = name #instance variable
 		#you can also write self.name = name
@@ -56,8 +63,10 @@ class CRM #since all these have similar properties -- to start the program
   @rolodex.add_contact(Contact.new(first_name, last_name, email, note)) #contact is a local variable so it doesn't matter what it's called, but we want to be able to put this into a container to hold onto it for later on
   main_menu #because we're in the instance of the class, we don't need to do a .something
 	end
+
 end 
 
-
-crm = CRM.new("Bitmaker Labs CRM")
-crm.main_menu
+CRM.run("Bitmaker Labs CRM")
+#you want "run" to be a class method that does the two lines below
+#crm = CRM.new("Bitmaker Labs CRM") #instance of the class
+#crm.main_menu

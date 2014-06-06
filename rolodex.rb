@@ -7,13 +7,11 @@ class Rolodex #make this an empty array to start
 		#your CRM should care about setting up a new rolodex right away
 	end
 
-
 	def add_contact(contact)
 		@contacts << contact
 		contact.id = @contact_id
 		@contact_id += 1 #increment it so that the next contact has a different, unique idea
 	end
+#id method defined in contact.rb Contact class
 
-	def id #contact only gets ID after it's added to rolodex
-	end 
 end
