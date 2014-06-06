@@ -1,3 +1,6 @@
+require_relative "contact"
+require_relative "rolodex"
+
 class CRM #since all these have similar properties -- to start the program
 	attr_accessor :name
 	def initialize(name)
@@ -55,34 +58,6 @@ class CRM #since all these have similar properties -- to start the program
 	end
 end 
 
-class Contact
-	def initialize(first_name, last_name, email, note)
-		@firstname = first_name
-		@last_name = last_name
-		@email = email
-		@note = note
-	end
-end
-
-class Rolodex #make this an empty array to start
-	attr_accessor :id, :first_name, :last_name, :email, :note
-
-	def initialize
-		@contact_id = 1000 #so that you can associate each contact with a unique number like in databases 
-		@contacts = []
-		#your CRM should care about setting up a new rolodex right away
-	end
-
-
-	def add_contact(contact)
-		@contacts << contact
-		contact.id = @contact_id
-		@contact_id += 1 #increment it so that the next contact has a different, unique idea
-	end
-
-	def id #contact only gets ID after it's added to rolodex
-	end 
-end
 
 crm = CRM.new("Bitmaker Labs CRM")
 crm.main_menu
