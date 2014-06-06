@@ -9,9 +9,7 @@ class Contact
 	end
 
 	def to_s
-		"ID NUMBER = #{id}" "\n" <<
 		"#{first_name} #{last_name} has contact ID #{@id} is reachable at #{email}." <<
 		"Here are our notes on him: #{note}."
-		"\n"
 	end
 end

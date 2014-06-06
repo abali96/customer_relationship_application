@@ -20,7 +20,7 @@ class CRM #since all these have similar properties -- to start the program
 
 	def print_main_menu
 		puts "[1] Add a new contract"
-		puts "[2] Modify and existing contact"
+		puts "[2] Modify an existing contact"
 		puts "[3] Delete a contact"
 		puts "[4] Display all the contacts"
 	  puts "[5] Display an attribute"
@@ -76,19 +76,23 @@ class CRM #since all these have similar properties -- to start the program
 		main_menu
 	end
 
+	def modify_existing_contact
+		@rolodex.display_contacts
+		@rolodex.modify_contacts
+		print_modify_options
+		main_menu
+	end
+
+	 def print_modify_options
+		puts "Pick which attriute you want to modify: "
+		puts "[1] First name"
+		puts "[2] Last name"
+		puts "[3] Email"
+		puts "[4] Note"
+		print "Enter a number: "
+	end
 
 
-
-
-
-	# def print_modify_options
-	# 	puts "[1] First name"
-	# 	puts "[2] Last name"
-	# 	puts "[3] Email"
-	# 	puts "[4] Note"
-	# 	print "Enter a number: "
-	# 	@attribute = gets.chomp.to_i
-	# end
 
 	# def modify_existing_contact
 	# print_modify_options
